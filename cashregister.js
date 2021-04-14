@@ -33,17 +33,11 @@ function checkCashRegister(price, cash, cid) {
   )
   // Check for sufficient funds
   if (totalChange > 0.0) {
-    return {
-      status: "INSUFFICIENT_FUNDS",
-      change: []
-    };
+    return { status: "INSUFFICIENT_FUNDS", change: [] };
   }
   // Check and return change and drawer status
   let empty = drawer.every(denom => denom[1] == 0);
   const status = empty ? "CLOSED" : "OPEN";
   change = empty ? cid : change.filter(denom => denom[1] > 0);
-  return {
-    status,
-    change
-  };
+  return { status, change };
 }
