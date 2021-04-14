@@ -12,30 +12,38 @@ function checkCashRegister(price, cash, cid) {
     "ONE HUNDRED" : 10000,
   };
   // Copy drawer to cents
-  let drawer = cid.map(denom => [denom[0], Math.round(denom[1]*100)]);
+  let drawer = cid
+    .map(denom => [denom[0], Math.round(denom[1] * 100)])
+    .reverse();
   // Compute change needed
-  let totalChange = Math.round((cash - price)*100);
-  let change = [];
-  // Give money from drawer
-  for (let i = drawer.length - 1; i >= 0; i--) {
-    const cents = unitToCents[drawer[i][0]];
-    let currentChange = 0;
-    while (totalChange >= cents && drawer[i][1] >= cents){
-      totalChange -= cents;
-      drawer[i][1] -= cents;
-      currentChange += cents;
-    }
-    if (currentChange !== 0) {
-      change.push([drawer[i][0], currentChange])
-    }
-  }
+  let totalChange = Math.round((cash - price) * 100);
+  let change = drawer.reduce(
+    (change, denom) => {
+      const cents = unitToCents[denom[0]];
+      let currentChange = 0;
+      while (totalChange >= cents && denom[1] >= cents) {
+        totalChange -= cents;
+        denom[1] -= cents;
+        currentChange += cents;
+      }
+      change.push([denom[0], currentChange / 100]);
+      return change;
+    },
+    []
+  )
   // Check for sufficient funds
-  if (totalChange > 0) {
-    return { status: "INSUFFICIENT_FUNDS", change: [] };
+  if (totalChange > 0.0) {
+    return {
+      status: "INSUFFICIENT_FUNDS",
+      change: []
+    };
   }
   // Check and return change and drawer status
-  let empty = drawer.every(denom => denom[1] === 0);
+  let empty = drawer.every(denom => denom[1] == 0);
   const status = empty ? "CLOSED" : "OPEN";
-  change = empty ? cid : change.map(denom => [denom[0], denom[1]/100]);
-  return { status, change };
+  change = empty ? cid : change.filter(denom => denom[1] > 0);
+  return {
+    status,
+    change
+  };
 }
