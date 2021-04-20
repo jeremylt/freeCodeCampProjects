@@ -1,5 +1,5 @@
-# fCC JavaScript Projects
+# freeCodeCamp Projects
 
-Code for my freeCodeCamp "JavaScript Algorithms and Data Structures" certification.
+Code for my freeCodeCamp certifications.
 
 https://www.freecodecamp.org/jeremylt
