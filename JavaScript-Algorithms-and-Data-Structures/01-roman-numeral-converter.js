@@ -15,11 +15,10 @@ function convertToRoman(num) {
     4    : "IV",
     1    : "I",
   };
-  const arabicNumerals = Object.keys(romanNumerals)
-    .sort((a, b) => b - a);
-  // Decrement number while building roman numeral version
-  return arabicNumerals.reduce(
-    (romanNum, arabic) => {
+    // Decrement number while building roman numeral version
+  return Object.keys(romanNumerals)
+    .sort((a, b) => b - a)
+    .reduce((romanNum, arabic) => {
       while (num >= arabic) {
         num -= arabic;
         romanNum += romanNumerals[arabic];
