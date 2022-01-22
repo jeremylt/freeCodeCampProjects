@@ -9,19 +9,18 @@ class Hat:
             for _ in range(int(kwargs[ball])):
                 contents.append(ball)
         self.contents = contents
-        self._original_contents = contents.copy()
 
     def copy(self):
         new_hat = Hat(noncolor=1)
         new_hat.contents = self.contents.copy()
-        new_hat._original_contents = self._original_contents.copy()
         return new_hat
 
     def draw(self, num_balls_drawn):
         # check if too many have been drawn
         if num_balls_drawn > len(self.contents):
-            self.contents = self._original_contents.copy()
-            return self.contents.copy()
+            contents = self.contents
+            self.contents = []
+            return contents
 
         # draw randomly if enough avaliable
         balls_drawn = []
