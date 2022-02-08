@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def calculate(list):
     if len(list) < 9:
         raise ValueError("List must contain nine numbers.")
@@ -9,44 +8,44 @@ def calculate(list):
 
     # mean
     computations["mean"] = [
-        np.mean(data, axis=0).tolist(),
-        np.mean(data, axis=1).tolist(),
-        np.mean(data),
+        data.mean(axis=0).tolist(),
+        data.mean(axis=1).tolist(),
+        data.mean(),
     ]
 
     # variance
     computations["variance"] = [
-        np.var(data, axis=0).tolist(),
-        np.var(data, axis=1).tolist(),
-        np.var(data),
+        data.var(axis=0).tolist(),
+        data.var(axis=1).tolist(),
+        data.var(),
     ]
 
     # standard deviation
     computations["standard deviation"] = [
-        np.std(data, axis=0).tolist(),
-        np.std(data, axis=1).tolist(),
-        np.std(data),
+        data.std(axis=0).tolist(),
+        data.std(axis=1).tolist(),
+        data.std(),
     ]
 
     # max
     computations["max"] = [
-        np.max(data, axis=0).tolist(),
-        np.max(data, axis=1).tolist(),
-        np.max(data),
+        data.max(axis=0).tolist(),
+        data.max(axis=1).tolist(),
+        data.max(),
     ]
 
     # min
     computations["min"] = [
-        np.min(data, axis=0).tolist(),
-        np.min(data, axis=1).tolist(),
-        np.min(data),
+        data.min(axis=0).tolist(),
+        data.min(axis=1).tolist(),
+        data.min(),
     ]
 
     # sum
     computations["sum"] = [
-        np.sum(data, axis=0).tolist(),
-        np.sum(data, axis=1).tolist(),
-        np.sum(data),
+        data.sum(axis=0).tolist(),
+        data.sum(axis=1).tolist(),
+        data.sum(),
     ]
 
     return computations
