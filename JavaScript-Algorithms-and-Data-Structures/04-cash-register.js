@@ -1,16 +1,17 @@
+// Use cents to avoid roundoff
+const unitToCents = {
+  "PENNY"       : 1,
+  "NICKEL"      : 5,
+  "DIME"        : 10,
+  "QUARTER"     : 25,
+  "ONE"         : 100,
+  "FIVE"        : 500,
+  "TEN"         : 1000,
+  "TWENTY"      : 2000,
+  "ONE HUNDRED" : 10000,
+};
+
 function checkCashRegister(price, cash, cid) {
-  // Use cents to avoid roundoff
-  const unitToCents = {
-    "PENNY"       : 1,
-    "NICKEL"      : 5,
-    "DIME"        : 10,
-    "QUARTER"     : 25,
-    "ONE"         : 100,
-    "FIVE"        : 500,
-    "TEN"         : 1000,
-    "TWENTY"      : 2000,
-    "ONE HUNDRED" : 10000,
-  };
   // Copy drawer to cents
   let drawer = cid
     .map(denom => [denom[0], Math.round(denom[1] * 100)])
