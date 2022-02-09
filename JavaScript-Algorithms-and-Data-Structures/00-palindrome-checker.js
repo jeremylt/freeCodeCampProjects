@@ -1,9 +1,10 @@
+// Character codes - faster than a regex
+const CODE_0 = "0".charCodeAt(0);
+const CODE_9 = "9".charCodeAt(0);
+const CODE_A = "A".charCodeAt(0);
+const CODE_Z = "Z".charCodeAt(0);
+
 function palindrome(str) {
-  // Character codes - faster than a regex
-  const CODE_0 = "0".charCodeAt(0);
-  const CODE_9 = "9".charCodeAt(0);
-  const CODE_A = "A".charCodeAt(0);
-  const CODE_Z = "Z".charCodeAt(0);
   // Split into alphanumeric UPPERCASE letters
   let alphanumeric = str
     .toUpperCase()
