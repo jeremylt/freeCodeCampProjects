@@ -22,7 +22,7 @@ class Hat:
             self.contents = []
             return contents
 
-        # draw randomly if enough avaliable
+        # draw randomly if enough available
         balls_drawn = []
         for _ in range(num_balls_drawn):
             balls_drawn.append(self.contents.pop(random.randrange(len(self.contents))))
