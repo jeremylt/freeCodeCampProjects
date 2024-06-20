@@ -1,15 +1,15 @@
 // Global variables required by freeCodeCamp
 let price = 19.5;
 let cid = [
-  ["PENNY", 1.01],
-  ["NICKEL", 2.05],
-  ["DIME", 3.1],
-  ["QUARTER", 4.25],
-  ["ONE", 90],
-  ["FIVE", 55],
-  ["TEN", 20],
-  ["TWENTY", 60],
-  ["ONE HUNDRED", 100]
+  ["PENNY", .50],
+  ["NICKEL", 0.0],
+  ["DIME", 0.0],
+  ["QUARTER", 0],
+  ["ONE", 0],
+  ["FIVE", 0],
+  ["TEN", 0],
+  ["TWENTY", 0],
+  ["ONE HUNDRED", 0]
 ];
 
 
@@ -28,7 +28,7 @@ const unitToCents = {
 
 function checkCashRegister(price, cash, cid) {
   // Copy drawer to cents
-  let drawer = cid
+  const drawer = cid
     .map(denom => [denom[0], Math.round(denom[1] * 100)])
     .reverse();
   // Compute change needed
@@ -52,7 +52,7 @@ function checkCashRegister(price, cash, cid) {
     return { status: "INSUFFICIENT_FUNDS", change: [] };
   }
   // Check and return change and drawer status
-  let empty = drawer.every(denom => denom[1] == 0);
+  const empty = drawer.every(denom => denom[1] == 0);
   const status = empty ? "CLOSED" : "OPEN";
   change = empty ? cid : change.filter(denom => denom[1] > 0);
   return { status, change };
@@ -72,7 +72,10 @@ function checkAndDisplay() {
 
     message = "Status: " + result.status;
     for (const denomination of result.change) {
-      message += " " + denomination[0] + ": $" + denomination[1];
+      // Closed drawer lists empty denominations
+      if (denomination[1] > 0) {
+        message += " " + denomination[0] + ": $" + denomination[1];
+      }
     }
   }
   document.getElementById('change-due').innerText = message;
