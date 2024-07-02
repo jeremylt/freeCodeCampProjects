@@ -62,23 +62,23 @@ function checkAndDisplay() {
   const input = document.getElementById('cash').value;
   const cash = Number(input);
 
-  let message = "";
+  document.getElementById('change-due').innerText = "";
   if (cash < price) {
     alert("Customer does not have enough money to purchase the item");
   } else if (cash === price) {
-    message = "No change due - customer paid with exact cash";
+    document.getElementById('change-due').innerText = "No change due - customer paid with exact cash";
   } else {
     const result = checkCashRegister(price, cash, cid);
 
-    message = "Status: " + result.status;
+    let message = "Status: " + result.status;
     for (const denomination of result.change) {
       // Closed drawer lists empty denominations
       if (denomination[1] > 0) {
         message += " " + denomination[0] + ": $" + denomination[1];
       }
     }
+    document.getElementById('change-due').innerText = message;
   }
-  document.getElementById('change-due').innerText = message;
 }
 
 document.getElementById('purchase-btn').onclick = checkAndDisplay;
