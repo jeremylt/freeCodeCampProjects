@@ -68,18 +68,11 @@ const clearPokemon = () => {
 }
 
 // Fetch pokemon and display
-const fetchPokemon = async (search) => {
-  let data;
-
-  try {
-    const res = await fetch(pokemonApiUrl + "/" + search.toLowerCase());
-
-    data = await res.json();
-  } catch (err) {
-    console.log(err);
-    alert("Pokémon not found");
-  }
-  showPokemon(data);
+const fetchPokemon = (search) => {
+  fetch(pokemonApiUrl + "/" + search.toLowerCase())
+    .then(res => res.json())
+    .then(data => showPokemon(data))
+    .catch(err => alert("Pokémon not found"));
 }
 
 const searchAndDisplay = () => {
