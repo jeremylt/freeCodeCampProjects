@@ -75,12 +75,12 @@ const fetchPokemon = (search) => {
     .catch(err => console.log(err) && alert("Pokémon not found"));
 }
 
-const searchAndDisplay = () => {
+const searchAndDisplay = (event) => {
   const input = document.getElementById('search-input').value;
 
+  event.preventDefault();
   clearPokemon();
   fetchPokemon(input);
 }
 
-document.getElementById('search-button').onclick = searchAndDisplay;
 document.getElementById('search-form').onsubmit = searchAndDisplay;
