@@ -10,7 +10,6 @@ const getPokemonStatValue = (data, stat) => {
     : '';
 }
 
-// Display single stat value
 const setStatValue = (name, value) => document.getElementById(name).innerText = value;
 
 // Update display for current Creature
@@ -52,6 +51,7 @@ const fetchCreature = (search) => {
     .then(res => res.json())
     .then(data => showCreature(data))
     .catch(err => {
+      clearCreature();
       console.log("Error fetching creature:", err);
       alert("Creature not found");
     });
@@ -61,7 +61,6 @@ const searchAndDisplay = (event) => {
   const input = document.getElementById('search-input').value;
 
   event.preventDefault();
-  clearCreature();
   fetchCreature(input);
 }
 
