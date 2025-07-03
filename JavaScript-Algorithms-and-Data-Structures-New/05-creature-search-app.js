@@ -2,23 +2,28 @@ const creatureApiUrl = "https://rpg-creature-api.freecodecamp.rocks/api/creature
 
 // Get value for stat, if present
 const getPokemonStatValue = (data, stat) => {
-  if (!data.stats) return '';
-  for (const entry of data.stats) {
-    if (entry.name === stat) return entry.base_stat;
-  }
+  return data.stats ?
+    data
+      .stats
+      .find(entry => entry.name === stat)
+      .base_stat
+    : '';
 }
+
+// Display single stat value
+const setStatValue = (name, value) => document.getElementById(name).innerText = value;
 
 // Update display for current Creature
 const showCreature = (data) => {
   // Attributes pre-pendend with 'creature-'
-  document.getElementById('creature-name').innerText = (data.name || '').toUpperCase();
-  document.getElementById('creature-id').innerText = data.id || '';
+  setStatValue('creature-name', (data.name || '').toUpperCase());
+  setStatValue('creature-id', data.id || '');
   // Attributes where name matches span
   [
     'weight',
     'height',
   ]
-    .forEach(attribute => document.getElementById(attribute).innerText = data[attribute] || '');
+    .forEach(attribute => setStatValue(attribute, data[attribute] || ''));
   // Stat attributes
   [
     'hp',
@@ -28,7 +33,7 @@ const showCreature = (data) => {
     'special-defense',
     'speed',
   ]
-    .forEach(stat => document.getElementById(stat).innerText = getPokemonStatValue(data, stat));
+    .forEach(stat => setStatValue(stat, getPokemonStatValue(data, stat)));
   // Types
   document.getElementById('types').innerHTML = data.types ?
     data
