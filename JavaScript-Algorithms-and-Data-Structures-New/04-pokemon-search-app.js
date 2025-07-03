@@ -72,7 +72,7 @@ const fetchPokemon = (search) => {
   fetch(pokemonApiUrl + "/" + search.toLowerCase())
     .then(res => res.json())
     .then(data => showPokemon(data))
-    .catch(err => alert("Pokémon not found"));
+    .catch(err => console.log(err) && alert("Pokémon not found"));
 }
 
 const searchAndDisplay = () => {
