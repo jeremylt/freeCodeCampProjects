@@ -1,4 +1,4 @@
-const pokemonApiUrl = " https://pokeapi-proxy.freecodecamp.rocks/api/pokemon";
+const pokemonApiUrl = "https://pokeapi-proxy.freecodecamp.rocks/api/pokemon";
 
 // Get value for stat, if present
 const getPokemonStatValue = (data, stat) => {
